@@ -1,0 +1,1 @@
+export { ProductDao } from "./productDao.js";

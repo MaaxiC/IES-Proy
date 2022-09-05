@@ -1,0 +1,1 @@
+export { ProductModel, ProductSchema } from "./productModel.js";
