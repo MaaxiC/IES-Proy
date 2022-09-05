@@ -14,7 +14,7 @@ const config = {
   server: {
     PORT: process.env.PORT ?? PORT,
     routes: {
-      admin: "/admin",
+      auth: "/auth",
       products: "/api/productos",
       carts: "/api/carrito",
     },

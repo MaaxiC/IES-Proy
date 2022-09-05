@@ -1,2 +1,3 @@
 export { productRouter } from "./productRouter.js";
-export { adminRouter } from "./adminRouter.js";
+export { authRouter } from "./authRouter.js";
+export { cartRouter } from "./cartRouter.js";
