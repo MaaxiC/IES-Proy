@@ -17,7 +17,7 @@ const user = joi.object({
   usuario: joi.string().min(2).max(100).required(),
   fechaNacimiento: joi.date().greater('01-01-1950').less('now').required(),
   dni: joi.number().min(10000000).max(99999999).required(),
-  roles: joi.array().required(),
+  roles: joi.array(),
   sexo: joi.string().min(1).max(100).required(),
   activo: joi.boolean().required(),
 })

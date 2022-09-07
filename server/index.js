@@ -1,11 +1,16 @@
 import express from "express";
 import morgan from "morgan";
 //import path from "path";
-import { __dirname } from "./utils.js";
-import { productRouter, authRouter, cartRouter } from "./routes/index.js";
+//import { __dirname } from "./utils.js";
+import {
+  productRouter,
+  authRouter,
+  cartRouter,
+  userRouter,
+} from "./routes/index.js";
 import { initializeMongoDB } from "./database.js";
 import { config } from "./config/config.js";
-import { createRoles } from "./libs/initialSetup.js"
+import { createRoles } from "./libs/initialSetup.js";
 import cors from "cors";
 import MongoStore from "connect-mongo";
 import session from "express-session";
@@ -40,18 +45,12 @@ app.use(passport.session());
 
 //Rutas
 app.use(config.server.routes.products, productRouter);
-app.use(config.server.routes.auth, authRouter);
 app.use(config.server.routes.carts, cartRouter);
+app.use(config.server.routes.auth, authRouter);
+app.use(config.server.routes.auth, userRouter);
 app.use((req, res) => {
-  res.send({
-      error: {
-          'name': 'Error',
-          'status': 404,
-          'message': 'Invalid Request',
-          'statusCode': 404
-      }
-  })
-})
+  res.status(404).send({ status: "error", error: "Invalid Request" });
+});
 
 //Archivos estaticos
 //app.use(express.static(path.join(__dirname, "public")));

@@ -1,6 +1,6 @@
 import passport from "passport";
 import local from "passport-local";
-import { UserModel } from "../models/index.js";
+import { RoleModel, UserModel } from "../models/index.js";
 import bcrypt from "bcrypt";
 
 const createHash = (password) =>
@@ -32,7 +32,7 @@ const initializePassport = () => {
           if (exists) {
             return done(null, false);
           }
-          const result = await UserModel.create({
+          const newUser = new UserModel({
             nombre,
             apellido,
             email,
@@ -40,10 +40,22 @@ const initializePassport = () => {
             fechaNacimiento,
             usuario,
             dni,
-            roles,
             sexo,
             activo,
           });
+          if (roles) {
+            const foundRoles = await RoleModel.find({ nombre: { $in: roles } });
+            if (foundRoles.length > 0) {
+              newUser.roles = foundRoles.map((role) => role.id);
+            } else {
+              const defaultRole = await RoleModel.findOne({ nombre: "usuario" });
+              newUser.roles = [defaultRole.id];
+            }
+          } else {
+            const role = await RoleModel.findOne({ nombre: "usuario" });
+            newUser.roles = [role.id];
+          }
+          const result = await newUser.save();
           return done(null, result);
         } catch (error) {
           return done(error);
@@ -58,7 +70,7 @@ const initializePassport = () => {
       { usernameField: "usuario" },
       async (usuario, password, done) => {
         try {
-          const user = await UserModel.findOne({ usuario });
+          const user = await UserModel.findOne({ usuario }).populate("roles");
           if (!user) {
             return done(null, false, {
               message: "no existe el usuario en la base de datos",
