@@ -9,9 +9,11 @@ const validUser = async (req, res, next) => {
       password,
       usuario,
       fechaNacimiento,
+      direccion,
+      telefono,
       dni,
       roles,
-      sexo,
+      genero,
       activo,
     } = req.body;
     await joiValidator.user.validateAsync({
@@ -21,9 +23,11 @@ const validUser = async (req, res, next) => {
       password,
       usuario,
       fechaNacimiento,
+      direccion,
+      telefono,
       dni,
       roles,
-      sexo,
+      genero,
       activo,
     });
     next();

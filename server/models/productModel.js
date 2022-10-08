@@ -12,7 +12,9 @@ const ProductSchema = new Schema(
     codigo: { type: String, required: true, max: 20 },
     foto: { type: String, required: true, max: 300 },
     precio: { type: Number, required: true },
-    stock: { type: Number, required: true },
+    stock: { type: Number },
+    categoria: { type: String, required: true, max: 100 },
+    marca: { type: String, required: true, max: 100 },
   },
   {
     virtuals: true,

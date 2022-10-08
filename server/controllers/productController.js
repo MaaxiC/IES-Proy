@@ -11,7 +11,7 @@ class ProductController {
     } catch (error) {
       res
         .status(500)
-        .send({ status: "test", error: ERROR.MESSAGE.INTERNAL_ERROR });
+        .send({ status: "error", error: ERROR.MESSAGE.INTERNAL_ERROR });
     }
   }
 
@@ -33,7 +33,7 @@ class ProductController {
 
   static async createProduct(req, res) {
     try {
-      const { nombre, descripcion, codigo, foto, precio, stock } = req.body;
+      const { nombre, descripcion, codigo, foto, precio, stock, categoria, marca } = req.body;
       const product = await joiValidator.product.validateAsync({
         nombre,
         descripcion,
@@ -41,6 +41,8 @@ class ProductController {
         foto,
         precio,
         stock,
+        categoria,
+        marca
       });
       const productSaved = await ProductApi.save(product);
       res.send(productSaved);
@@ -58,14 +60,15 @@ class ProductController {
   static async updateProduct(req, res) {
     try {
       const { id } = req.params;
-      const { nombre, descripcion, codigo, foto, precio, stock } = req.body;
+      const { nombre, descripcion, codigo, foto, precio, categoria, marca } = req.body;
       const product = await joiValidator.product.validateAsync({
         nombre,
         descripcion,
         codigo,
         foto,
         precio,
-        stock,
+        categoria,
+        marca
       });
       const productSaved = await ProductApi.updateById(id, product);
       if (!productSaved || productSaved.kind)

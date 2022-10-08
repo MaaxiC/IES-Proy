@@ -19,7 +19,7 @@ const validateSignIn = async (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.status(400).send({ status: "error", error: info.message });
+      return res.status(404).send({ status: "error", error: info.message });
     }
     req.session.user = {
       nombre: user.nombre,
@@ -27,9 +27,11 @@ const validateSignIn = async (req, res, next) => {
       email: user.email,
       usuario: user.usuario,
       fechaNacimiento: user.fechaNacimiento,
+      direccion: user.direccion,
+      telefono: user.telefono,
       dni: user.dni,
       roles: user.roles,
-      sexo: user.sexo,
+      genero: user.genero,
       activo: user.activo,
       id: user.id,
       createdAt: user.createdAt,

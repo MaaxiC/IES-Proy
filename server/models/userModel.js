@@ -12,6 +12,8 @@ const UserSchema = new Schema(
     email: { type: String, unique: true, required: true, max: 100 },
     password: { type: String, required: true, max: 100 },
     fechaNacimiento: { type: Date, required: true },
+    direccion: { type: String, required: true, max: 100 },
+    telefono: { type: Number, required: true },
     usuario: { type: String, unique: true, required: true, max: 100 },
     dni: { type: Number, required: true },
     roles: [
@@ -20,7 +22,7 @@ const UserSchema = new Schema(
         type: Schema.Types.ObjectId,
       },
     ],
-    sexo: { type: String, required: true, max: 100 },
+    genero: { type: String, required: true, max: 100 },
     activo: { type: Boolean, required: true },
   },
   {

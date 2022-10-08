@@ -21,9 +21,11 @@ const initializePassport = () => {
             apellido,
             email,
             fechaNacimiento,
+            direccion,
+            telefono,
             dni,
             roles,
-            sexo,
+            genero,
             activo,
           } = req.body;
           const exists = await UserModel.findOne({
@@ -38,9 +40,11 @@ const initializePassport = () => {
             email,
             password: createHash(password),
             fechaNacimiento,
+            direccion,
+            telefono,
             usuario,
             dni,
-            sexo,
+            genero,
             activo,
           });
           if (roles) {

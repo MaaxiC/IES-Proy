@@ -6,7 +6,9 @@ const product = joi.object({
   codigo: joi.string().min(3).max(20).required(),
   foto: joi.string().min(5).max(300).required(),
   precio: joi.number().required(),
-  stock: joi.number().integer().required(),
+  stock: joi.number().integer(),
+  categoria: joi.string().min(2).max(100).required(),
+  marca: joi.string().min(2).max(100).required(),
 });
 
 const user = joi.object({
@@ -16,9 +18,11 @@ const user = joi.object({
   password: joi.string().min(2).max(100).required(),
   usuario: joi.string().min(2).max(100).required(),
   fechaNacimiento: joi.date().greater('01-01-1950').less('now').required(),
-  dni: joi.number().min(10000000).max(99999999).required(),
+  direccion: joi.string().min(5).max(100).required(),
+  telefono: joi.string().regex(/^[0-9]{10}$/).messages({'string.pattern.base': `Telefono debe tener 10 digitos`}).required(),
+  dni: joi.number().integer().min(10000000).max(99999999).required(),
   roles: joi.array(),
-  sexo: joi.string().min(1).max(100).required(),
+  genero: joi.string().min(1).max(100).required(),
   activo: joi.boolean().required(),
 })
 
