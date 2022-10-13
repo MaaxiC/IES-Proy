@@ -5,6 +5,7 @@ import {
   authRouter,
   cartRouter,
   userRouter,
+  providerRouter,
 } from "./routes/index.js";
 import { config } from "./config/config.js";
 import cors from "cors";
@@ -45,6 +46,7 @@ app.use(config.server.routes.products, productRouter);
 app.use(config.server.routes.carts, cartRouter);
 app.use(config.server.routes.auth, authRouter);
 app.use(config.server.routes.users, userRouter);
+app.use(config.server.routes.providers, providerRouter);
 
 app.use((req, res) => {
   res.status(404).send({ status: "error", error: "Invalid Request" });

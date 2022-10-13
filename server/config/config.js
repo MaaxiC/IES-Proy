@@ -9,6 +9,7 @@ const config = {
     carts: "carritos",
     users: "usuarios",
     roles: "roles",
+    providers: "proveedores",
   },
   mongo_db: {
     URL: process.env.URL ?? "mongodb://localhost/p11",
@@ -20,7 +21,8 @@ const config = {
       auth: "/auth/api",
       products: "/api/productos",
       carts: "/api/carrito",
-      users: "/api/usuarios"
+      users: "/api/usuarios",
+      providers: "/api/proveedores",
     },
   },
 };
