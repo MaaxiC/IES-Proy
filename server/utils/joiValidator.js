@@ -14,7 +14,7 @@ const product = joi.object({
 const user = joi.object({
   nombre: joi.string().min(2).max(100).required(),
   apellido: joi.string().min(2).max(100).required(),
-  email: joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com'] } }),
+  email: joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com'] } }).required(),
   password: joi.string().min(2).max(100).required(),
   usuario: joi.string().min(2).max(100).required(),
   fechaNacimiento: joi.date().greater('01-01-1950').less('now').required(),
@@ -26,4 +26,12 @@ const user = joi.object({
   activo: joi.boolean().required(),
 })
 
-export const joiValidator = { product, user };
+const updateUser = joi.object({
+  nombre: joi.string().min(2).max(100),
+  apellido: joi.string().min(2).max(100),
+  direccion: joi.string().min(5).max(100),
+  telefono: joi.string().regex(/^[0-9]{10}$/).messages({'string.pattern.base': `Telefono debe tener 10 digitos`}),
+  genero: joi.string().min(1).max(100),
+})
+
+export const joiValidator = { product, user, updateUser };

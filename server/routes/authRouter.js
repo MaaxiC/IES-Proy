@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { Admin, validUser, validateEmpty } from "../middlewares/index.js";
 import {
-  ProductController,
   signUp,
   signIn,
   registerFail,
@@ -11,14 +10,7 @@ import {
 import passport from "passport";
 
 const authRouter = Router();
-const { createProduct, updateProduct, deleteProduct } = ProductController;
 
-//Productos
-authRouter.post("/productos", Admin, createProduct);
-authRouter.put("/productos/:id", Admin, updateProduct);
-authRouter.delete("/productos/:id", Admin, deleteProduct);
-
-//usuarios
 authRouter.post("/iniciarsesion", validateEmpty, validateSignIn, signIn);
 authRouter.post(
   "/registrar",

@@ -20,6 +20,7 @@ const config = {
       auth: "/auth/api",
       products: "/api/productos",
       carts: "/api/carrito",
+      users: "/api/usuarios"
     },
   },
 };
