@@ -35,8 +35,6 @@ const createProvider = async (req, res) => {
     const {
       cuit,
       razonSocial,
-      nombre,
-      apellido,
       direccion,
       telefono,
       email,
@@ -45,8 +43,6 @@ const createProvider = async (req, res) => {
     const provider = await joiValidator.provider.validateAsync({
       cuit,
       razonSocial,
-      nombre,
-      apellido,
       direccion,
       telefono,
       email,

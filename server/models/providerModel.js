@@ -9,8 +9,6 @@ const ProviderSchema = new Schema(
   {
     cuit: { type: Number, required: true },
     razonSocial: { type: String, required: true, max: 100 },
-    nombre: { type: String, required: true, max: 100 },
-    apellido: { type: String, required: true, max: 100 },
     direccion: { type: String, required: true, max: 100 },
     telefono: { type: Number, required: true },
     email: { type: String, unique: true, required: true, max: 100 },
