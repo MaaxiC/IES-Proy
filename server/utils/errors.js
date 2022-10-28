@@ -3,6 +3,8 @@ const NO_PRODUCT = "producto no encontrado";
 const NO_USER = "usuario no encontrado";
 const NO_PROVIDER = "proveedor no encontrado";
 const INTERNAL_ERROR = "fallo en el servidor";
+const NO_CATEGORY = "categoria no encontrada";
+const NO_BRAND = "marca no encontrada";
 
 export const ERROR = {
   MESSAGE: {
@@ -10,6 +12,8 @@ export const ERROR = {
     NO_PRODUCT,
     NO_USER,
     NO_PROVIDER,
+    NO_CATEGORY,
+    NO_BRAND,
     INTERNAL_ERROR,
   },
 };

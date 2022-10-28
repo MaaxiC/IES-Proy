@@ -10,6 +10,9 @@ const config = {
     users: "usuarios",
     roles: "roles",
     providers: "proveedores",
+    categories: "categorias",
+    brands: "marcas",
+    transactions: "transacciones",
   },
   mongo_db: {
     URL: process.env.URL ?? "mongodb://localhost/p11",
@@ -20,9 +23,12 @@ const config = {
     routes: {
       auth: "/auth/api",
       products: "/api/productos",
+      categories: "/api/categorias",
+      brands: "/api/marcas",
       carts: "/api/carrito",
       users: "/api/usuarios",
       providers: "/api/proveedores",
+      transactions: "/api/transacciones",
     },
   },
 };

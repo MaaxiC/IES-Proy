@@ -3,12 +3,13 @@ import { ProductController } from "../controllers/index.js";
 import { Admin } from "../middlewares/index.js";
 
 const productRouter = Router();
-const { getProducts, getProductById, createProduct, updateProduct, deleteProduct } = ProductController;
+const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, updateStock } = ProductController;
 
 productRouter.get("/", getProducts);
 productRouter.get("/:id", getProductById);
-productRouter.post("/productos", Admin, createProduct);
-productRouter.put("/productos/:id", Admin, updateProduct);
-productRouter.delete("/productos/:id", Admin, deleteProduct);
+productRouter.post("/", Admin, createProduct);
+productRouter.put("/:id", Admin, updateProduct);
+productRouter.put("/:id/stock", Admin, updateStock);
+productRouter.delete("/:id", Admin, deleteProduct);
 
 export { productRouter };

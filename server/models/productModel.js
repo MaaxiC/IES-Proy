@@ -8,13 +8,13 @@ const ProductCollection = config.collection.products;
 const ProductSchema = new Schema(
   {
     nombre: { type: String, required: true, max: 100 },
-    descripcion: { type: String, required: true, max: 200 },
-    codigo: { type: String, required: true, max: 20 },
-    foto: { type: String, required: true, max: 300 },
+    descripcion: { type: String, required: true },
+    codigo: { type: String, required: true },
+    foto: { type: String, required: true },
     precio: { type: Number, required: true },
     stock: { type: Number },
-    categoria: { type: String, required: true, max: 100 },
-    marca: { type: String, required: true, max: 100 },
+    categoria: { ref: config.collection.categories, type: Schema.Types.ObjectId },
+    marca: { ref: config.collection.brands, type: Schema.Types.ObjectId },
   },
   {
     virtuals: true,

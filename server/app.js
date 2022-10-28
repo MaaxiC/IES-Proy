@@ -2,6 +2,8 @@ import express from "express";
 import morgan from "morgan";
 import {
   productRouter,
+  categoryRouter,
+  brandRouter,
   authRouter,
   cartRouter,
   userRouter,
@@ -43,6 +45,8 @@ app.use(passport.session());
 
 //Rutas
 app.use(config.server.routes.products, productRouter);
+app.use(config.server.routes.categories, categoryRouter);
+app.use(config.server.routes.brands, brandRouter);
 app.use(config.server.routes.carts, cartRouter);
 app.use(config.server.routes.auth, authRouter);
 app.use(config.server.routes.users, userRouter);

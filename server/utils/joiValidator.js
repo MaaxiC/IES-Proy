@@ -2,10 +2,10 @@ import joi from "joi";
 
 const product = joi.object({
   nombre: joi.string().min(2).max(100).required(),
-  descripcion: joi.string().min(2).max(200).required(),
-  codigo: joi.string().min(3).max(20).required(),
-  foto: joi.string().min(5).max(300).required(),
-  precio: joi.number().required(),
+  descripcion: joi.string().min(2).required(),
+  codigo: joi.string().min(3).required(),
+  foto: joi.string().required(),
+  precio: joi.number().min(100).required(),
   stock: joi.number().integer(),
   categoria: joi.string().min(2).max(100).required(),
   marca: joi.string().min(2).max(100).required(),

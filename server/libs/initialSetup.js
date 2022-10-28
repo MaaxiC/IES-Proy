@@ -1,4 +1,4 @@
-import { RoleModel } from "../models/index.js";
+import { RoleModel, CategoryModel, BrandModel } from "../models/index.js";
 
 const createRoles = async () => {
   try {
@@ -7,6 +7,8 @@ const createRoles = async () => {
     await Promise.all([
       new RoleModel({ nombre: "usuario" }).save(),
       new RoleModel({ nombre: "admin" }).save(),
+      new CategoryModel({ nombre: "Sin categoria", margen: 0 }).save(),
+      new BrandModel({ nombre: "Sin marca" }).save(),
     ]);
     console.log("Configuracion inicial satisfactoria");
   } catch (error) {

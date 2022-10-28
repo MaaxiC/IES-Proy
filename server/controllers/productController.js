@@ -1,7 +1,8 @@
-import { ProductDao } from "../daos/index.js";
+import { ProductDao, TransactionDao } from "../daos/index.js";
 import { ERROR, joiValidator } from "../utils/index.js";
 
-const ProductApi = new ProductDao()
+const ProductApi = new ProductDao();
+const TransactionApi = new TransactionDao();
 
 class ProductController {
   static async getProducts(req, res) {
@@ -99,6 +100,28 @@ class ProductController {
         status: "success",
         response: "producto eliminado correctamente",
       });
+    } catch (error) {
+      res
+        .status(500)
+        .send({ status: "error", error: ERROR.MESSAGE.INTERNAL_ERROR });
+    }
+  }
+
+  static async updateStock(req, res) {
+    try {
+      const { id } = req.params;
+      const product = await ProductApi.getById(id)
+      product.stock += req.body.stock
+      const productSaved = await ProductApi.updateById(id, product);
+      if (!productSaved || productSaved.kind)
+        return res
+          .status(404)
+          .send({ status: "error", error: ERROR.MESSAGE.NO_PRODUCT });
+      await TransactionApi.save({
+        tipoMovimiento: "Actualización de stock",
+        usuario: req.session.user.usuario,
+      })
+      res.send(productSaved);
     } catch (error) {
       res
         .status(500)
