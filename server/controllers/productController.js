@@ -54,7 +54,7 @@ class ProductController {
           .send({ status: "error", error: error.details[0].message });
       res
         .status(500)
-        .send({ status: "error", error: ERROR.MESSAGE.INTERNAL_ERROR });
+        .send({ status: "error", error: error });
     }
   }
 
@@ -126,6 +126,16 @@ class ProductController {
       res
         .status(500)
         .send({ status: "error", error: ERROR.MESSAGE.INTERNAL_ERROR });
+    }
+  }
+
+  static async recalculateStock({id, cantidad}) {
+    try {
+      const product = await ProductApi.getById(id)
+      product.stock -= cantidad
+      await ProductApi.updateById(id, product);
+    } catch (error) {
+      return error
     }
   }
 }

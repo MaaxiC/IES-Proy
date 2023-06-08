@@ -6,6 +6,7 @@ const INTERNAL_ERROR = "fallo en el servidor";
 const NO_CATEGORY = "categoria no encontrada";
 const NO_BRAND = "marca no encontrada";
 const NO_TRANSACTION = "transaccion no encontrada";
+const NO_ORDER = "orden no encontrada";
 
 export const ERROR = {
   MESSAGE: {
@@ -17,5 +18,6 @@ export const ERROR = {
     NO_BRAND,
     NO_TRANSACTION,
     INTERNAL_ERROR,
+    NO_ORDER
   },
 };

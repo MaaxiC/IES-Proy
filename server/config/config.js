@@ -6,17 +6,21 @@ const PORT = 4000;
 const config = {
   collection: {
     products: "productos",
-    carts: "carritos",
     users: "usuarios",
     roles: "roles",
     providers: "proveedores",
     categories: "categorias",
     brands: "marcas",
     transactions: "transacciones",
+    orders: "ordenes",
   },
   mongo_db: {
     URL: process.env.URL ?? "mongodb://localhost/p11",
     SECRET: process.env.SECRET ?? "secretKeySessionDefault"
+  },
+  mailing: {
+    EMAIL: process.env.EMAIL ?? "test@test.com",
+    EMAIL_PASS: process.env.EMAIL_PASS ?? "test",
   },
   server: {
     PORT: process.env.PORT ?? PORT,
@@ -25,10 +29,10 @@ const config = {
       products: "/api/productos",
       categories: "/api/categorias",
       brands: "/api/marcas",
-      carts: "/api/carrito",
       users: "/api/usuarios",
       providers: "/api/proveedores",
       transactions: "/api/transacciones",
+      orders: "/api/ordenes",
     },
   },
 };
